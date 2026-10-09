@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [josh_design]
+    branches: [main]
   workflow_dispatch:
   # Daily rebuild (~6 AM Chicago) so prerendered pages drop a featured event
   # once it has ended. GitHub only runs schedules from the default branch.
