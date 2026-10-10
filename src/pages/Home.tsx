@@ -10,14 +10,14 @@ import FollowTheLight from "../components/FollowTheLight/FollowTheLight";
 import { siteImages } from "../data/images";
 import { churchInfo, verseOfTheWeek } from "../data/site";
 import { useFeaturedEvent } from "../hooks/useFeaturedEvent";
-import { formatEventDateShort } from "../utils/featuredEvent";
+import type { FeaturedEvent } from "../data/site";
+import { eventDateParts, formatEventDateLong, formatEventDateShort } from "../utils/featuredEvent";
 
-// One quiet line under "I'm New" pointing to the current featured event
-// (`featuredEvent` in src/data/site.ts). Renders nothing when there is none,
-// which leaves the hero exactly as designed.
-function FeaturedEventNotice() {
-  const event = useFeaturedEvent();
-  if (!event) return null;
+// The current featured event (`featuredEvent` in src/data/site.ts) appears in
+// the hero in one of two places: this card under "I'm New" on wider screens,
+// or a row inside the "This Sunday" card on phones (FeaturedEventCardRow), so
+// the phone hero keeps one card instead of two. CSS shows one at a time.
+function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
   return (
     <Link className="ctc-hero-notice" to="/events#featured">
       <span className="ctc-hero-notice-icon" aria-hidden="true">
@@ -31,6 +31,23 @@ function FeaturedEventNotice() {
       </span>
       <span className="sr-only"> (event details)</span>
       <ArrowRight className="ctc-hero-notice-arrow" size={16} aria-hidden="true" />
+    </Link>
+  );
+}
+
+// Phone version: a calendar leaf, the title and an arrow, no label. The
+// dated tile says "occasion" on its own.
+function FeaturedEventCardRow({ event }: { event: FeaturedEvent }) {
+  const { month, day } = eventDateParts(event);
+  return (
+    <Link className="ctc-hero-card-event" to="/events#featured">
+      <span className="ctc-hero-card-event-leaf" aria-hidden="true">
+        <span>{month}</span>
+        <strong>{day}</strong>
+      </span>
+      <span className="ctc-hero-card-event-title">{event.title}</span>
+      <span className="sr-only">, {formatEventDateLong(event)} (event details)</span>
+      <ArrowRight className="ctc-hero-card-event-arrow" size={16} aria-hidden="true" />
     </Link>
   );
 }
@@ -87,6 +104,7 @@ export default function Home() {
     fabRef.current?.classList.toggle("is-visible", index > 0);
   }, []);
   const homeRef = useRef<HTMLDivElement | null>(null);
+  const featured = useFeaturedEvent();
 
   // The homepage header floats over Follow the Light; publish its real
   // height so every chapter is centred in the space below it.
@@ -177,7 +195,7 @@ export default function Home() {
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
-          <FeaturedEventNotice />
+          {featured ? <FeaturedEventNotice event={featured} /> : null}
         </div>
 
         <div className="ctc-hero-visual">
@@ -186,10 +204,18 @@ export default function Home() {
               <span>This Sunday</span>
               <strong>{churchInfo.worship.time}</strong>
             </div>
-            <a href={churchInfo.address.directionsUrl} target="_blank" rel="noreferrer">
-              Get directions
+            <a
+              className="ctc-hero-card-directions"
+              href={churchInfo.address.directionsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {/* Short phones swap the text for the pin (as on the Sunday bar). */}
+              <MapPin className="ctc-hero-card-directions-pin" size={18} aria-hidden="true" />
+              <span className="ctc-hero-card-directions-text">Get directions</span>
               <ArrowRight size={14} aria-hidden="true" />
             </a>
+            {featured ? <FeaturedEventCardRow event={featured} /> : null}
           </aside>
         </div>
         <WeeklyVerse className="ctc-hero-weekly-verse-ribbon" />

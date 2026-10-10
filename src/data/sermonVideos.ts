@@ -30,7 +30,17 @@ export const sermonPlaylists = [
 export type SermonPlaylistId = (typeof sermonPlaylists)[number]["id"];
 
 export const sermonVideos: SermonVideo[] = [
-  // Praise & Worship (16)
+  // Praise & Worship (26)
+  { title: "Christ Tamil Church Chicago – Praise & Worship | October 4, 2026", youtubeId: "lEyO3fX2mo8", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | September 27, 2026", youtubeId: "AGplFtSlcWw", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | September 13, 2026", youtubeId: "G6Ls5-vWcfQ", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | September 6, 2026 (Family Camp)", youtubeId: "wJJxyEfME-A", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | August 30, 2026 (Blast Kids Sunday)", youtubeId: "WP1g24J6rO4", playlistId: "praise-worship" },
+  { title: "CTC Praise & Worship Moments #shorts", youtubeId: "ZbYmNR0krDM", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | August 9, 2026", youtubeId: "BP9Q3F7LlOM", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | August 2, 2026", youtubeId: "-dG-zVos9Is", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | July 26, 2026", youtubeId: "OxXHMUvbbhA", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | July 19, 2026", youtubeId: "7y97t6S36z4", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | July 12, 2026", youtubeId: "NW_TXe8uxBg", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | May 17, 2026", youtubeId: "gLA-_-VvSa4", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | July 5, 2026", youtubeId: "zbV6kw0ayd4", playlistId: "praise-worship" },
@@ -81,7 +91,9 @@ export const sermonVideos: SermonVideo[] = [
   { title: "CaveQuest VBS2016 Experience Flavor in the Song He is the Light Christ Tamil Church Chicago", youtubeId: "n8Cyo4MnuEA", playlistId: "vbs" },
   { title: "Rev Doc Newcomb: Message to VBS Kids AUG 8 2015 - GOD's LOVE", youtubeId: "rOrfmmNO7-g", playlistId: "vbs" },
   { title: "2015 Christ Tamil Church Chicago VBS: EVEREST - Powerful, August 8", youtubeId: "bEd-FDK-Pu0", playlistId: "vbs" },
-  // Kids @ CTC / Sunday School (7)
+  // Kids @ CTC / Sunday School (9)
+  { title: "BLAST Kids Creative Bible Projects Celebration | August 30, 2026", youtubeId: "pkObrUn5748", playlistId: "kids-at-ctc" },
+  { title: "BLAST Kids Creative Bible Project Display #shorts", youtubeId: "8J-QycsZDrQ", playlistId: "kids-at-ctc" },
   { title: "Christ Tamil Church – VBS 2026 | Day 1 | Zoomerang | Team Portraits", youtubeId: "tH0lx9JhNW0", playlistId: "kids-at-ctc" },
   { title: "Christ Tamil Church – VBS 2026 | Day 1 | Zoomerang | Praise & Worship", youtubeId: "8SNMLH_3xWs", playlistId: "kids-at-ctc" },
   { title: "CTC VBS 2026 Is Here! #shorts #vbs2026 #christtamilchurchchicago", youtubeId: "yKnZ9iI63GE", playlistId: "kids-at-ctc" },

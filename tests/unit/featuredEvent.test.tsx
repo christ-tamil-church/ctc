@@ -114,10 +114,16 @@ describe.runIf(featuredEvent)("featured event on the site", () => {
 
   it("links from the homepage hero to the Events page section", () => {
     setToday(event.startsOn);
-    renderApp("/");
-    const notice = screen.getByRole("link", { name: new RegExp(event.title) });
-    expect(notice).toHaveAttribute("href", "/events#featured");
-    expect(notice).toHaveTextContent(formatEventDateShort(event));
+    const { container } = renderApp("/");
+    // Wider screens show the notice card; phones show a row inside the
+    // "This Sunday" card instead (CSS picks one). Both go to the same place.
+    const links = screen.getAllByRole("link", { name: new RegExp(event.title) });
+    expect(links).toHaveLength(2);
+    for (const link of links) expect(link).toHaveAttribute("href", "/events#featured");
+    expect(container.querySelector(".ctc-hero-notice")).toHaveTextContent(formatEventDateShort(event));
+    const cardRow = container.querySelector(".ctc-hero-card .ctc-hero-card-event") as HTMLElement;
+    expect(cardRow).toHaveAccessibleName(new RegExp(formatEventDateLong(event)));
+    expect(cardRow).not.toHaveTextContent(/featured/i);
   });
 
   it("features the event at the top of the Events page", () => {
@@ -132,6 +138,7 @@ describe.runIf(featuredEvent)("featured event on the site", () => {
     setToday(after.toISOString().slice(0, 10));
     const home = renderApp("/");
     expect(home.container.querySelector(".ctc-hero-notice")).toBeNull();
+    expect(home.container.querySelector(".ctc-hero-card-event")).toBeNull();
     home.unmount();
     renderApp("/events");
     expect(document.getElementById("featured")).toBeNull();
