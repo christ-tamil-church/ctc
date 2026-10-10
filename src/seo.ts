@@ -4,7 +4,7 @@ import { churchInfo } from "./data/site";
 // The one place the public domain lives. Canonical URLs, Open Graph tags,
 // structured data, and sitemap.xml are all built from it. When the new site
 // moves to christtamilchurch.com, change this line and public/CNAME together.
-export const siteUrl = "https://christtamilchurch.us";
+export const siteUrl = "https://christtamilchurch.com";
 
 export const siteName = "Christ Tamil Church Chicago";
 
